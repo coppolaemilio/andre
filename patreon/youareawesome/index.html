@@ -1,0 +1,116 @@
+<!-- Coded by Emilio for Andre's patreon :) good luck! -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Thank you!!</title>
+  <script type="text/javascript" src="/js/main.js"></script>
+<style>
+  body{
+    background-image: url('/images/background.gif');
+    background-size: 100%;
+    overflow: hidden;
+  }
+  h1, h2{
+    text-align: center;
+    color: white;
+    font-size: 80px;
+    font-family: verdana;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    z-index: 10000;
+    position: fixed;
+    top: 2%;
+    width: 100%;
+  }
+  h2{
+    font-size: 40px;
+    top: auto;
+    bottom: 10%;
+    width: 100%;
+  }
+  .andre{
+    display: block;
+    margin: 0 auto;
+    width: 344px;
+    height: 344px;
+    position: fixed;
+    top: calc(50% - 172px);
+    left: calc(50% - 172px);
+    z-index: 1;
+  }
+  .andre img{
+    overflow: visible;
+  }
+  .star{
+    background-image: url('/images/star.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 344px;
+    height: 344px;
+    top: calc(50% - 172px);
+    left: calc(50% - 172px);
+    position: fixed;
+    z-index:  -10;
+    opacity: 0.9;
+  }
+</style>
+</head>
+<body>
+  <h1 id="title">Thank you</h1>
+  <div class="andre">
+    <div id="star" class="star"></div>
+    <img src="/images/happy-andre.gif">
+  </div>
+  <h2 id="best">You are the best!</h2>
+
+  <embed src="/music/thankyou.mp3" loop="true" autostart="true" hidden="true" />
+
+  <script>
+  var thankyou = ["Thank you","dankie","faleminderit","shukran","Շնորհակալություն","hvala","благодаря","gràcies","M̀h’gōi","hvala","děkuji","tak","dank u","tänan","kiitos","merci","danke","ευχαριστώ","mahalo",".תודה","dhanyavād","köszönöm","takk","terima kasih.","grazie","ありがとう","감사합니다","paldies","choukrane","ačiū","Благодарам","terima kasih","grazzi","謝謝","Баярлалаа","takk","dziękuję","obrigado","mulţumesc","спасибо","xвала","Ďakujem","hvala","gracias","tack","nandri","kop khun","teşekkür ederim","Дякую","diolch","a dank","ngiyabonga"];
+
+  function update(){
+    document.getElementById("title").innerHTML = thankyou[Math.floor(Math.random() * thankyou.length)];;
+    setTimeout( update, 300 );
+  }
+  update()
+  Object.prototype.rotate = function(d) {
+    var s = "rotate(" + d + "deg)";
+    if (this.style) { // regular DOM Object
+      this.style.MozTransform = s
+      this.style.WebkitTransform = s;
+      this.style.OTransform = s;
+      this.style.transform = s;
+    } else if (this.css) { // JQuery Object
+      this.css("-moz-transform", s);
+      this.css("-webkit-transform", s);
+      this.css("-0-transform", s);
+      this.css("transform", s);
+    }
+    this.setAttribute("rotation", d);
+  }
+
+  // TITLE TILT
+  var time = 0,
+    angle = 50,
+    angle_best = 50,
+    star_angle = 0;
+  function tilt(){
+    time += 0.5;
+    star_angle += 0.3;
+    angle += -0.7*Math.cos(time/5);
+    angle_best += -0.7*Math.cos(time/15);
+    document.getElementById("title").rotate(angle - 50);
+    document.getElementById("best").rotate(angle_best - 50);
+    document.getElementById("star").rotate(star_angle);
+    setTimeout( tilt, 10 );
+  }
+  tilt();
+
+  //SNOW
+  function init () {
+    snow();
+  }
+  window.onload=init;
+  </script>
+</body>
+</html>
